@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hank寫好玩得html-3c</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+            background: #3e3ede;
+
+        }
+        div>p {
+            position: relative;
+            padding: 8px 30px;
+            text-decoration: none;
+            border: 5px solid #f4ff5c;
+            width: 95vw;
+            border-left: none;
+            border-right: none;
+
+            z-index: 1;
+            margin: 0 auto;
+            
+        }
+
+        p>span {
+            color: #f9f900;
+            font-size: 13vw;
+            margin: auto;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <div>
+    <p><span id="timer"></span></p>
+    <span style="color:#3e3e9e;">0 is Sunday.懂?</span>
+    </div>
+   
+   
+    
+    <script>
+        var myVar = setInterval(myTimer, 1000);
+
+        function myTimer() {
+            var d = new Date();
+            var time = [d.getFullYear(), checkTime(d.getMonth() + 1), d.getDate(), checkTime(d.getHours()), d
+                .getMinutes(), d.getSeconds(), d.getDay()
+            ];
+            /* var timeText = (time[0] + '/' + time[1] + '/' + checkTime(time[2]) + ' ' + time[3] + ':' + checkTime(time[
+                 4]) + ':' + checkTime(time[5])+","+time[6]).toString();*/
+            var timeText = ("Today是星期"+time[6] +"啦"+ "<br>時間 is " + time[3] + ':' + checkTime(time[4]) + ':' + checkTime(time[5]))
+        .toString();
+
+            var timeTitle = (time[3] + ':' + checkTime(time[4]) + ':' + checkTime(time[5]) + ' ' + time[0] + '-' + time[
+                1] + '-' + checkTime(time[2])).toString();
+            var y1 = time[0].toString().substring(0, 1),
+                y2 = time[0].toString().substring(1, 2),
+                y3 = time[0].toString().substring(2, 3),
+                y4 = time[0].toString().substring(3, 4),
+                m1 = time[1].toString().substring(0, 1),
+                m2 = time[1].toString().substring(1, 2),
+                d1 = time[2].toString().substring(0, 2),
+                h1 = time[3].toString().substring(0, 1),
+                h2 = time[3].toString().substring(1, 2),
+                min1 = time[4].toString().substring(0, 1),
+                min2 = time[4].toString().substring(1, 2),
+                sec1 = time[5].toString().substring(0, 2);
+            document.getElementById("timer").innerHTML = timeText;
+            var x = timeText;
+            /*document.getElementsByTagName("title").innerHTML = x;*/
+            document.title = timeTitle;
+        }
+
+        function checkTime(i) {
+            //copy from W3School
+            if (i < 10) {
+                i = "0" + i
+            };
+            return i;
+        }
+    </script>
+
+</body>
