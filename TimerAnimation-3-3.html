@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 
 <head lang="en">
@@ -7,56 +8,57 @@
  Save all files first, including html file
  to use this feature. -->
 
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta http-equiv="X-UA-Compatible" content="ie=edge">
- <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <style type="text/css">
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
-	    flex-direction:column;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-	    background:#3e3ede;
+            background: #3e3ede;
 
         }
 
 
-        div > p {
+        div>p {
             position: relative;
             padding: 8px 30px;
             text-decoration: none;
             border: 5px solid #f4ff5c;
-	    width:100vw;
-	    border-left:none;
-	    border-right:none;
+            width: 100vw;
+            border-left: none;
+            border-right: none;
             box-sizing: border-box;
             transition: 1s;
             z-index: 1;
-            margin:auto;
+            margin: auto;
         }
-        
-        p > span{
+
+        p>span {
             color: #f9f900;
             /***T***/
             transition: 18000s;
-	    font-size:10vw;	    
+            font-size: 10vw;
         }
 
-        p:before > span{
-            color: #000;            
-        }     
-        p:active > span{
+        p:before>span {
+            color: #000;
+        }
+
+        p:active>span {
             color: #3e3ede;
             transition: transform 0.1s;
         }
 
 
-        div > p:before{
+        div>p:before {
             content: '';
             position: absolute;
             top: 0;
@@ -71,10 +73,10 @@
             /***B***/
             transition: transform 18000s;
             transform-origin: right;
-	    
+
         }
 
-        div > p:active:before {
+        div>p:active:before {
             color: #0ff;
             transform: scaleX(1);
             transition: transform 0.1s;
@@ -90,37 +92,45 @@
             font-size: 9vw;
             font-family: '新細明體';
         }
-        div > ul{
+
+        div>ul {
             list-style: none;
             font-size: 9vw;
             font-family: '新細明體';
         }
-
     </style>
 
 </head>
 
 <body>
     <div>
-      
-	    
+
+
         <p><span id="timer"></span></p>
-       
-        
-       
-        
+
+        <span id="MilSec" style="color:#ff5c5c;"></span>
+
+
     </div>
-	<a href="TimerAnimation-3-4.html" style="color: #f9f900;text-decoration: none;">New</a>
+    <a href="TimerAnimation-3-4.html" style="color: #f9f900;text-decoration: none;">New</a>
     <script>
         var myVar = setInterval(myTimer, 1000);
+        var myVar2 = setInterval(myTimer2, 1);
+
+        function myTimer2() {
+            var d = new Date();
+            document.getElementById("MilSec").innerHTML = addZero(d.getMilliseconds(), 3); //"FakeRndNumAnimation >> "+
+        }
 
         function myTimer() {
             var d = new Date();
             var time = [d.getFullYear(), checkTime(d.getMonth() + 1), d.getDate(), checkTime(d.getHours()), d
-                .getMinutes(), d.getSeconds()];
+                .getMinutes(), d.getSeconds(), d.getMilliseconds()
+            ];
             var timeText = (time[0] + '/' + time[1] + '/' + checkTime(time[2]) + ' ' + time[3] + ':' + checkTime(time[
                 4]) + ':' + checkTime(time[5])).toString();
-	    var timeTitle = (time[3] + ':' + checkTime(time[4]) + ':' + checkTime(time[5])+ ' ' +time[0] + '-' + time[1] + '-' + checkTime(time[2])).toString();
+            var timeTitle = (time[3] + ':' + checkTime(time[4]) + ':' + checkTime(time[5]) + ' ' + time[0] + '-' + time[
+                1] + '-' + checkTime(time[2])).toString();
             var y1 = time[0].toString().substring(0, 1),
                 y2 = time[0].toString().substring(1, 2),
                 y3 = time[0].toString().substring(2, 3),
@@ -143,19 +153,25 @@
             document.getElementById("timer").innerHTML = timeText;
 
 
-	    var x = timeText;
-	    /*document.getElementsByTagName("title").innerHTML = x;*/
-	    document.title = timeTitle;
+            var x = timeText;
+            /*document.getElementsByTagName("title").innerHTML = x;*/
+            document.title = timeTitle;
         }
 
         function checkTime(i) {
             //copy from W3School
             if (i < 10) {
-                i = "0" + i
-            };
+                i = "0" + i;
+            }
             return i;
+        }
+
+        function addZero(x, n) {
+            while (x.toString().length < n) {
+                x = "0" + x;
+            }
+            return x;
         }
     </script>
 
 </body>
-
